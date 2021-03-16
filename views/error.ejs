@@ -1,0 +1,37 @@
+<!-- <h1><%= message %></h1>
+<h2><%= error.status %></h2>
+<pre><%= error.stack %></pre>  -->
+
+<div class="error-container">
+    <p class="status">เอิ่ม...</p>
+    <p class="text">ไม่มีหน้าเว็บที่คุณกำลังมองหา</p>
+</div>
+
+<style>
+    @keyframes popup {
+        0% {transform: scale(0);}
+        100% {transform: scale(1);}
+    }       
+    .error-container{
+        animation-name: popup;
+        animation-duration: 0.3s;
+        position: fixed;
+        margin: 0 auto;
+        top: 35%;
+        left: 20%;
+        height: 25%;
+        width: 60%;
+        background-color: whitesmoke;
+        border-radius: 30px;
+    }
+    .status{
+        text-align: center;
+        font-size: 4vw;
+        margin: 0;
+        height: 70%;
+        color:#4b4b4b;
+    }
+    .text{
+        font-size: 2vw;
+    }
+</style>

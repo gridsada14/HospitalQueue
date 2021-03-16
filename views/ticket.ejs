@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket</title>
+    <style>
+        * {
+            font-family: 'FC Lamoon';
+            margin: 0%;
+            border: 0px;
+            padding: 0%;
+        }
+        body,html {
+            margin: 0px;
+            padding: 0px;
+            border: 0px;
+            background-color: #000000;
+            overflow-x: hidden; 
+            overflow-y: hidden; 
+            height: 100%;
+            width: 100%;
+            color: #4b4b4b;
+        }
+        .container{
+            margin: 0;
+            background: transparent;
+            padding: 0;
+            border-radius: 20px;
+            height: 100%;
+            background-color:#02457a;
+        }
+        .bg-container{
+            border-radius: 30px;
+            height: 95%;
+            width: 90%;
+            top: 50%;
+            position: fixed;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+        }
+        .circle1{
+            position: fixed;
+            display: inline-block;
+            height: 6vh;
+            width: 6vh;
+            border-radius: 50%;
+            top: 70%;
+            left: 0%;
+            background-color: #02457a;
+        }
+        .circle2{
+            position: fixed;
+            display: inline-block;
+            height: 6vh;
+            width: 6vh;
+            border-radius: 50%;
+            top: 70%;
+            right: 0%;
+            background-color: #02457a;
+        }
+        .ticket-container{
+            position: fixed;
+            margin: 0 auto;
+            height: 39vh;
+            width: 90%;
+            border-radius: 30px;
+            padding: 0 5% 5% 5%;
+            background-color: white;
+            font-size: 6vw;
+        }
+        #logo{
+            width: 30%;
+            height: 23vh;
+            left: 0px;
+            right: 0px;
+            padding:  5% 5% 5% 5% ;
+        }
+        .hospital{
+            position: absolute;
+            font-size: 6.5vw ;
+            top: 10%;
+            right: 5%;  
+            font-weight: 900;     
+        }
+        .content{
+            margin-bottom: 6vh;
+        }
+        .call{
+            margin-bottom: 2vh;
+        }
+         .value{
+            float: right;
+        } 
+   
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="bg-container">
+            <img src="/images/logo_hospital.jpg" id="logo">
+            <div class="ticket-naame">
+                <p class="hospital">โรงพยาบาลค่ายจักรพงษ์<br>แผนกจักษุวิทยา</p>
+            </div>
+            <div class="ticket-container">
+                <p class="value"><%= username %></p>
+                <p class="content patient-name">ชื่อ-นามสกุล : </p>
+                <p class="value"><%= password %> </p>
+                <p class="content hn">หมายเลขโรงพยาบาล(HN) : </p>
+                <p class="value">นัดตรวจตาผู้ป่วยโรคเบาหวาน</p>
+                <p class="content note">หมายเหตุ : </p>
+                <p class="value">000-000-0000</p>  
+                <p class="content call">ติดต่อเจ้าหน้าที่ :</p>    
+                
+                
+            </div>
+            <% if(locals.fullDate) {%> 
+                <p class="fullDate"><%= fullDate %></p>
+            <% } %> 
+        </div>
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+    </div>
+    
+</body>
+</html>

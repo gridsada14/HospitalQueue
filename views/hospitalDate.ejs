@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ระบบนัดตรวจตา</title>
+        <meta name="description" content="A simple Calendar in JS Vanilla">
+        <meta name="author" content="https://github.com/marssola/vanilla-calendar">
+        <meta name="viewport" content="user-scalable=no" />
+        
+        <script src="/js/vanilla-calendar.js"></script>
+        <script src="/js/hospital.js"></script>
+        <link rel="stylesheet" href="/css/vanilla-calendar-min.css">
+        <link rel="stylesheet" href="/css/hospital.css">
+        
+    </head>
+    <body>
+        
+        <div class="content">
+            <div class="container-top">
+                <img src="/images/bg2.jpg" >
+                <div class="title">นัดวันตรวจตา</div>
+                <div class="descrip">โรงพยาบาลค่ายจักรพงษ์ แผนกจักษุวิทยา</div>
+            </div>
+            <% if(locals.message) {%> 
+                <div id="alert-box-container red-box-container" >
+                    <div class="alert-popup-container red-popup-container">
+                        <p class="text-popup-2"><%= message %></p>
+                    </div>
+                </div>
+            <% } %> 
+
+            <div id="myCalendar" class="vanilla-calendar"></div>  
+            <div name="pastDates"></div>
+            <div name="availableDates"></div>
+            <div name="availableWeekDays"></div>
+        </div>
+
+        
+
+        <div id="box-container" id="submitPopup">
+            <div id="exampleModal" class="popup-container">
+                <div class="param">
+                    <p class="text-popup">คุณต้องการเลือกวันนี้?</p>
+                    <p class="text-popup sure_date" id="sure_date"></p>
+                </div>
+                <button class="btn btn-left" onclick="location.href='#login-box-container'">ตกลง</button>
+                <button class="btn btn-right" onclick="location.href='#'" type="button">ยกเลิก</button>
+            </div>
+        </div>
+        
+        <div id="alert-box-container" >
+            <div class="alert-popup-container">
+                <p class="text-popup-2">วันนี้ไม่ได้เปิดทำการ</p>
+                <button class="btn-full" onclick="location.href='#'" type="button">ตกลง</button>
+            </div>
+        </div>
+
+        <div id="login-box-container">
+            <form class="login-popup-container" method="POST" action="/auth/hospital">
+                <p class="text-popup-login">เข้าสู่ระบบ</p>
+                <div class="form-group">
+                    <label for="username" class="sr-only">ชื่อ-นามสกุล :</label>
+                    <input type="text" name="username" id="username" class="form-control" placeholder="Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="sr-only">หมายเลขโรงพยาบาล(HN) :</label>
+                    <input type="text" name="password" id="password" class="form-control" placeholder="HospitalName" required>
+                </div>
+                <button class="btn-left-login submit" type="submit">ตกลง</button>
+                <button class="btn-right-login" onclick="location.href='#'" type="button">ยกเลิก</button>
+            </form>
+        </div>
+
+
+        <script>
+            let pastDates = true, availableDates = false, availableWeekDays = false
+
+            var isSelect = {
+                isMonth: "",
+                setMonth: function(val) {
+                    this.isMonth = val;
+                },
+                getMonth: function(){
+                    return this.isMonth
+                },
+                fullDate: "",
+                setFull: function(val) {
+                    this.fullDate = val;
+                },
+                getFull: function(){
+                    return this.fullDate;
+                },
+            }
+            
+
+
+            let fullDate = isSelect.fullDate
+
+            let calendar = new VanillaCalendar({
+                selector: "#myCalendar",
+                months: ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"],
+                shortWeekday: ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์' ],
+                
+                onSelect: (data, elem) => {
+                    const openDate = data.date;
+                    if( openDate.includes('Fri')){
+                        
+                        rawDate = openDate.slice(8,10)
+                        rawDay = openDate.slice(0,3)
+                        rawMonth = openDate.slice(4,7)
+                        rawYear = openDate.slice(11,15)
+                        thaiMonth(rawMonth)
+                        var thisYear = parseInt(rawYear)
+                        var isYear = thisYear + 543
+                        var sure_date =  rawDate + " " + isSelect.isMonth + " " + isYear
+                        isSelect.setFull(sure_date)
+                        if(isSelect.getMonth() != ""){
+                            window.location.href='#box-container';
+                            document.getElementById("sure_date").innerHTML = isSelect.getFull();
+                        }else{
+                            window.location.href='/hospital'
+                        }
+                    }else{
+                        window.location.href='#alert-box-container'
+                        isSelect.setFull("")
+                    }
+                    
+                        
+                },
+                
+                checkOpen: (fullDate) => {
+                    window.location.href='#box-container';
+                    
+                    console.log(fullDate)
+                } 
+            })
+            
+            let btnPastDates = document.querySelector('[name=pastDates]')
+                pastDates = !pastDates
+                calendar.set({pastDates: pastDates})
+                isSelect.setFull("")
+
+
+            const thaiMonth = function(engMonth){
+                if(engMonth === 'Jan'){
+                    isSelect.setMonth("มกราคม")
+                }
+                else if(engMonth === 'Feb'){
+                    isSelect.setMonth("กุมภาพันธ์")
+                }
+                else if(engMonth === 'Mar'){
+                    isSelect.setMonth("มีนาคม")
+                }
+                else if(engMonth === 'Apr'){
+                    isSelect.setMonth("เมษายน")
+                }
+                else if(engMonth === 'May'){
+                    isSelect.setMonth("พฤษภาคม")
+                }
+                else if(engMonth === 'Jun'){
+                    isSelect.setMonth("มิถุนายน")
+                }
+                else if(engMonth === 'Jul'){
+                    isSelect.setMonth("กรกฎาคม")
+                }
+                else if(engMonth === 'Aug'){
+                    isSelect.setMonth("สิงหาคม")
+                }
+                else if(engMonth === 'Sep'){
+                    isSelect.setMonth("กันยายน")
+                }
+                else if(engMonth === 'Oct'){
+                    isSelect.setMonth("ตุลาคม")
+                }
+                else if(engMonth === 'Nov'){
+                    isSelect.setMonth("พฤศจิกายน")
+                }
+                else if(engMonth === 'Dec'){
+                    isSelect.setMonth("ธันวาคม")
+                }
+                else{
+                    isSelect.setMonth("???")
+                }
+            }
+        </script>
+    </body>
+</html>
