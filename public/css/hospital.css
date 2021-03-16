@@ -1,0 +1,275 @@
+
+textarea:hover, 
+input:hover, 
+textarea:active, 
+input:active, 
+textarea:focus, 
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active
+{
+    outline:0px !important;
+    -webkit-appearance:none;
+    box-shadow: none !important;
+}
+
+* {
+    font-family: 'FC Lamoon';
+    margin: 0%;
+    border: 0px;
+    padding: 0%;
+}
+
+body,html {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    background-color: #000000;
+    overflow-x: hidden; 
+    overflow-y: hidden; 
+    height: 100%;
+    width: 100%;
+    color: #4b4b4b;
+    
+}
+
+h1, h2, h3 {
+    color: #4b4b4b;
+    margin: 1.2em 0 .5em 0;
+}
+img{
+    border-radius: 50px 50px 0 0;
+    border: 0%;
+    margin: 0%;
+    width: 100%;
+    height: 45vh;
+    position: relative;
+}
+
+@keyframes popup {
+    0% {transform: scale(0);}
+    100% {transform: scale(1);}
+}
+
+.content {
+    margin: 0;
+    background: transparent;
+    padding: 0;
+    border-radius: 50px;
+    height: 100vh;
+}
+.container-top{
+    position: relative;
+    text-align: center;
+    
+}
+
+.title  {
+    position: absolute;
+    font-size: 11em ;
+    top: 5%;
+    left: 5%;
+}
+.descrip {
+    position: absolute;
+    font-size: 4em;
+    top: 30%;
+    left: 5%;
+}
+
+button {
+    padding: 10px;
+    border: 0;
+    border-radius: 3px;
+    font-size: 1em;
+    cursor: pointer;
+}
+button.info {
+    background: #538fcd;
+    color: #fff;
+}
+
+
+#box-container, #alert-box-container, #login-box-container {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    visibility: hidden;
+    display: none;
+    background-color: rgba(22,22,22,0.5); /* complimenting your modal colors */
+}
+#box-container:target, #alert-box-container:target, #login-box-container:target{
+    visibility: visible;
+    display: block;
+    
+}
+
+.popup-container, .alert-popup-container {
+    animation-name: popup;
+    animation-duration: 0.3s;
+    position: fixed;
+    margin: 0 auto;
+    top: 35%;
+    left: 20%;
+    height: 25%;
+    width: 60%;
+    background-color: white;
+    border-radius: 30px;
+    
+}
+.login-popup-container{
+    animation-name: popup;
+    animation-duration: 0.3s;
+    position: absolute;
+    margin: 0 auto;
+    top: 25%;
+    left: 15%;
+    height: 50%;
+    width: 70%;
+    background-color: white;
+    border-radius: 30px;
+}
+.param{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 70%;
+    width: 100%;
+    background-color: white;
+    border: 0;
+    border-radius: 30px 30px 0 0;
+    font-family: FC Lamoon;
+    color: #4b4b4b;
+}
+.btn-left, .btn-left-login{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 30%;
+    width: 50%;
+    background-color: white;
+    border: 0;
+    border-radius: 0 0 0 30px ;
+    font-size: 3em;
+    font-family: FC Lamoon;
+    transition: 0.3;
+    border-right:  2.5px solid rgb(240, 240, 240);
+    border-top:  5px solid rgb(240, 240, 240);
+    color: #4b4b4b;
+}
+.btn-right, .btn-right-login{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 30%;
+    width: 50%;
+    background-color: white;
+    border: 0;
+    border-radius: 0 0 30px 0;
+    font-size: 3em;
+    font-family: FC Lamoon;
+    transition: 0.3;
+    border-left:  2.5px solid rgb(240, 240, 240);
+    border-top:  5px solid rgb(240, 240, 240);
+    color: #4b4b4b;
+}
+.btn-left-login, .btn-right-login{
+    height: 20%;
+}
+.btn-right:active{
+    background-color:  rgb(240, 240, 240);
+}
+.btn-left:active{
+    background-color: rgb(240, 240, 240);
+
+}
+.btn-left:focus { outline: none;}
+.btn-right:focus { outline: none; }
+.text-popup{
+    text-align: center;
+    font-size: 6vw;
+    transform: translateY(20%);
+    -ms-transform: translateY(20%);
+    margin: 0;
+    margin-top: 3vh;
+    color:#4b4b4b;
+}
+
+.text-popup-login{
+    text-align: center;
+    font-weight: 900;
+    font-size:  10vw;
+    transform: translateY(10%);
+    -ms-transform: translateY(10%);
+    color:#4b4b4b ;
+    margin: 5% 5% 8% 5%;
+}
+
+.text-popup-2{
+    text-align: center;
+    font-size: 4em;
+    transform: translateY(45%);
+    -ms-transform: translateY(45%);
+    margin: 0;
+    height: 70%;
+    color:#4b4b4b;
+}
+
+.btn-full{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 30%;
+    width: 100%;
+    background-color: white;
+    border: 0;
+    border-radius: 0 0 30px 30px;
+    font-size: 3em;
+    font-family: FC Lamoon;
+    transition: 0.3;
+    border-top:  5px solid rgb(240, 240, 240);
+    color: #4b4b4b;
+}
+.btn-full:active{
+    background-color:  rgb(240, 240, 240);
+}
+.btn-right-login:active, .btn-left-login:active{
+    background-color: rgb(240, 240, 240);
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .form-signin {
+    width: 100%;
+    max-width: 420px;
+    padding: 2rem;
+    margin: auto;
+    background-color: #f3f3f3;
+  }
+
+  @keyframes alert {
+    0% {left: 0%; top: 48%;}
+    100% {left: 0%; top: 29%;}
+  }
+.red-popup-container{
+    position: fixed;
+    border-radius: 50px 50px 0 0;
+    left: 0%;
+    top: 29%;
+    width: 100%;
+    height: 10%;
+    background-color: rgb(245, 217, 217);
+    padding-bottom: 10%;
+    animation-name: alert;
+    animation-duration: 0.7s;
+}
